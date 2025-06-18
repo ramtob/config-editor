@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Config Editor</title></head>
+<body>
+  <h1>App Configuration</h1>
+  <form id="configForm">
+    <label>
+      Username:
+      <input type="text" id="username" />
+    </label><br/><br/>
+    <label>
+      Theme:
+      <select id="theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label><br/><br/>
+    <button type="submit">Save</button>
+  </form>
+
+  <script>
+    window.api.loadConfig().then(cfg => {
+      document.getElementById('username').value = cfg.username || '';
+      document.getElementById('theme').value = cfg.theme || 'light';
+    });
+
+    document.getElementById('configForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const newConfig = {
+        username: document.getElementById('username').value,
+        theme: document.getElementById('theme').value
+      };
+      window.api.saveConfig(newConfig);
+      alert("Configuration saved!");
+    });
+  </script>
+</body>
+</html>
