@@ -14,8 +14,8 @@ function createWindow() {
     }
   });
 
-  win.loadURL('http://localhost:4200');
-//   win.loadFile(path.join(__dirname, 'ui/index.html'));
+//   win.loadURL('http://localhost:4200');
+  win.loadFile(path.join(__dirname, 'ui/index.html'));
 }
 
 app.whenReady().then(createWindow);
