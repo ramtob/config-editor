@@ -2,7 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
-console.log('Starting Electron app...');
+console.log('Electron main process starting...');
 
 const configPath = path.join(__dirname, 'config.json');
 
