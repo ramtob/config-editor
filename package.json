@@ -1,25 +1,25 @@
 {
   "name": "config-editor",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./dist/main.js",
   "scripts": {
     "build": "tsc && copyfiles -u 1 src/*.html src/config.json dist",
-    "start": "npm run build && electron --trace-warnings ./dist/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently --kill-others-on-fail --names \"NG,ELECTRON\" \"cd ui && npm start\" \"node start-dev.js\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {
-    "electron": "^36.4.0"
-  },
   "devDependencies": {
     "@electron/remote": "^2.1.2",
     "@types/node": "^24.0.3",
-    "concurrently": "^9.1.2",
+    "concurrently": "^9.2.0",
     "copyfiles": "^2.4.1",
+    "electron": "^36.5.0",
     "electron-builder": "^26.0.12",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "wait-on": "^8.0.3"
   }
 }
