@@ -6,7 +6,9 @@
     "build": "tsc && copyfiles -u 1 src/*.html src/config.json dist",
     "start": "npm run build && electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently --kill-others-on-fail --names \"NG,ELECTRON\" \"cd ui && npm start\" \"node start-dev.js\""
+    "dev:elc": "npm run build && electron . --dev",
+    "dev:ui": "cd ui && npm start",
+    "dev:both": "concurrently --kill-others-on-fail --names \"NG,ELECTRON\" \"cd ui && npm start\" \"node start-dev.js\""
   },
   "keywords": [],
   "author": "",
