@@ -31,7 +31,7 @@ function createWindow() {
 
 app.whenReady().then(createWindow);
 
-ipcMain.handle('load-config', async () => {
+ipcMain.handle('read-config', async () => {
     const data = fs.readFileSync(configPath, 'utf-8');
     return JSON.parse(data);
 });

@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'ui';
+  config: any;
+
+  loadConfig() {
+    window.electronAPI.readConfig().then(cfg => {
+      this.config = cfg;
+    });
+  }
 }
