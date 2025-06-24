@@ -32,8 +32,19 @@ function createWindow() {
 app.whenReady().then(createWindow);
 
 ipcMain.handle('read-config', async () => {
-    const data = fs.readFileSync(configPath, 'utf-8');
-    return JSON.parse(data);
+  try {
+    const content = fs.readFileSync(configPath, 'utf-8');
+    return JSON.parse(content);
+  } catch (err: any) {
+    if (err.code === 'ENOENT') {
+      // File not found: create default
+      const defaultConfig = { username: '', theme: 'light' };
+      fs.writeFileSync(configPath, JSON.stringify(defaultConfig, null, 2));
+      return defaultConfig;
+    } else {
+      throw err;
+    }
+  }
 });
 
 ipcMain.handle('save-config', async (_, newConfig) => {

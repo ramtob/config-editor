@@ -1,3 +1,27 @@
-<h1>Electron Config</h1>
-<button (click)="loadConfig()">Load Config</button>
-<pre>{{ config | json }}</pre>
+<h1>Electron Config Editor</h1>
+
+<div *ngIf="config; else loadingOrError">
+  <form (ngSubmit)="saveConfig()">
+    <label>
+      Username:
+      <input [(ngModel)]="config.username" name="username" />
+    </label><br /><br />
+
+    <label>
+      Theme:
+      <select [(ngModel)]="config.theme" name="theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label><br /><br />
+
+    <button type="submit">Save Config</button>
+  </form>
+
+  <pre>{{ config | json }}</pre>
+</div>
+
+<ng-template #loadingOrError>
+  <p *ngIf="error" style="color: red;">Error: {{ error }}</p>
+  <p *ngIf="!error">Loading config...</p>
+</ng-template>
