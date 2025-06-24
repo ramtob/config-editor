@@ -10,6 +10,7 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 600,
         height: 400,
+        show: false, // Start hidden to prevent flicker
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true
@@ -26,7 +27,10 @@ function createWindow() {
     } else {
         win.loadFile(path.join(__dirname, 'ui/index.html'));
     }
-    //   win.loadFile(path.join(__dirname, 'ui/index.html'));
+    // Show the window only when it's ready to prevent flickering
+    win.once('ready-to-show', () => {
+        win.show(); // Show the window only when it's ready
+    });
 }
 
 app.whenReady().then(createWindow);
